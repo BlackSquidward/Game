@@ -1,0 +1,60 @@
+import random
+
+class Player:
+    def __init__(self, name, sport):
+        self.name = name
+        self.sport = sport
+        self.level = 1
+        self.experience = 0
+
+    def train(self):
+        training_points = random.randint(1, 10)
+        self.experience += training_points
+        print(f"{self.name} trained and gained {training_points} experience points.")
+
+        if self.experience >= self.level * 10:
+            self.level += 1
+            print(f"Congratulations! {self.name} leveled up to level {self.level}.")
+
+    def compete(self):
+        competition_points = random.randint(5, 15)
+        self.experience += competition_points
+        print(f"{self.name} competed and earned {competition_points} experience points.")
+
+        if self.experience >= self.level * 10:
+            self.level += 1
+            print(f"Congratulations! {self.name} leveled up to level {self.level}.")
+
+# Define sports
+sports = ["Football", "Basketball", "Tennis", "Swimming"]
+
+# Create player
+name = input("Enter your name: ")
+print("Select a sport:")
+for index, sport in enumerate(sports, start=1):
+    print(f"{index}. {sport}")
+sport_choice = int(input("Enter the number corresponding to your chosen sport: "))
+selected_sport = sports[sport_choice - 1]
+player = Player(name, selected_sport)
+
+# Start the career
+print(f"Welcome, {player.name}! You have chosen {player.sport} as your sport.")
+
+while True:
+    print("\nChoose an action:")
+    print("1. Train")
+    print("2. Compete")
+    print("3. Quit")
+
+    action = int(input("Enter the number corresponding to your chosen action: "))
+
+    if action == 1:
+        player.train()
+    elif action == 2:
+        player.compete()
+    elif action == 3:
+        print("Thank you for playing!")
+        break
+    else:
+        print("Invalid choice. Please try again.")
+
